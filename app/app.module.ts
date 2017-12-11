@@ -8,6 +8,23 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AuthProvider } from '../providers/auth/auth';
 
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestore,AngularFirestoreCollection } from 'angularfire2/firestore';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyAio_94Pw0FrTLCLAAh3-8oY45AN9m0bbg",
+    authDomain: "whiteknight-9f398.firebaseapp.com",
+    databaseURL: "https://whiteknight-9f398.firebaseio.com",
+    projectId: "whiteknight-9f398",
+    storageBucket: "whiteknight-9f398.appspot.com",
+    messagingSenderId: "703289580337"
+};
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -15,7 +32,11 @@ import { AuthProvider } from '../providers/auth/auth';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
