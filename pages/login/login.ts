@@ -61,7 +61,7 @@ export class LoginPage {
     this.navCtrl.push('ResetPasswordPage');
   }
 
-  createAccount(){
+  Signup(){
     this.navCtrl.push('SignupPage');
   }
 
