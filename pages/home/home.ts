@@ -18,6 +18,10 @@ export class HomePage {
     });
   }
 
+  goToTestPage() {
+    this.navCtrl.push('TestPage');
+  }
+
   logout() {
     this.authData.logoutUser();
   }

@@ -69,8 +69,4 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  goToTestPage() {
-     this.navCtrl.push('TestPage');
-  }
-
 }
