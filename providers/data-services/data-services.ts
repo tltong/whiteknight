@@ -15,8 +15,7 @@ export class DataServicesProvider {
   }
 
   pushDataFS(collectionName:string,item:any) {
-        this.afs.collection(collectionName).add(item).then(() => { console.log('Done');  })
+    this.afs.collection(collectionName).add(item).then(() => { console.log('Done');  })
  }
-
 
 }

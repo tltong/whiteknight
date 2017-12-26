@@ -1,4 +1,11 @@
-export class Item {
+export interface ItemInterface {
+  artist: string,
+  title: string
+
+}
+
+
+export class Item implements ItemInterface {
     artist: string;
     title: string;
 
