@@ -11,11 +11,16 @@ import {
 @Injectable()
 export class DataServicesProvider {
 
+  private itemsCollection: AngularFirestoreCollection<Item>;
+
   constructor(private afs: AngularFirestore) {
   }
 
   pushDataFS(collectionName:string,item:any) {
-    this.afs.collection(collectionName).add(item).then(() => { console.log('Done');  })
- }
+    
+    this.itemsCollection = this.afs.collection<any>(collectionName);
+    //this.itemsCollection.add({ singer: "the corr", name: "runaway" });
+    this.itemsCollection.add(item.getData()); 
+}
 
 }

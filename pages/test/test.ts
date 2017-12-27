@@ -19,6 +19,8 @@ export class TestPage {
   tb_fs_value2: string;
 
   objInt: ItemInterface;
+  obj: Item;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public ds:DataServicesProvider) {
   }
@@ -29,8 +31,8 @@ export class TestPage {
 
 
   push_data_fs() {
-    this.ItemInterface = new Item(this.tb_value1,this.tb_value2);
-    this.ds.pushDataFS(this.tb_collection,this.ItemInterface);
+    this.objInt = new Item(this.tb_value1,this.tb_value2);
+    this.ds.pushDataFS(this.tb_collection,this.objInt);
   }
 
 
