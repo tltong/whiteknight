@@ -11,7 +11,7 @@ import {
 @Injectable()
 export class DataServicesProvider {
 
-  private itemsCollection: AngularFirestoreCollection<Item>;
+  private itemsCollection: AngularFirestoreCollection<any>;
 
   constructor(private afs: AngularFirestore) {
   }

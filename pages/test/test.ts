@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DataServicesProvider } from '../../providers/data-services/data-services';
 
-import { Item, ItemInterface } from '../../utils/item'
+import { Item } from '../../utils/item'
 
 
 
@@ -18,9 +18,7 @@ export class TestPage {
   tb_fs_value1: string;
   tb_fs_value2: string;
 
-  objInt: ItemInterface;
   obj: Item;
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public ds:DataServicesProvider) {
   }
