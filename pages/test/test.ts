@@ -31,8 +31,8 @@ export class TestPage {
 
 
   push_data_fs() {
-    this.objInt = new Item(this.tb_value1,this.tb_value2);
-    this.ds.pushDataFS(this.tb_collection,this.objInt);
+    this.obj = new Item(this.tb_fs_value1,this.tb_fs_value2);
+    this.ds.pushDataFS(this.tb_collection,this.obj);
   }
 
 
