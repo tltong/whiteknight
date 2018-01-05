@@ -9,11 +9,12 @@
 
 <ion-content padding>
 
-<p>Firestore data push  </p>
 <ion-item>
     <ion-label floating>Collection </ion-label>
     <ion-input type="text" [(ngModel)]="tb_collection"></ion-input>
 </ion-item>
+<br><br>
+<p>Firestore data push  </p>
 <ion-item>
     <ion-label floating>Document value 1 </ion-label>
     <ion-input type="text" [(ngModel)]="tb_fs_value1"></ion-input>
@@ -23,6 +24,10 @@
     <ion-input type="text" [(ngModel)]="tb_fs_value2"></ion-input>
 </ion-item>
 <button ion-button (click)="push_data_fs()">Push data</button>
+
+<br><br><br><br>
+<p>Firestore data pull  </p>
+<button ion-button (click)="pull_data_fs()">Pull data</button>
 
 
 </ion-content>

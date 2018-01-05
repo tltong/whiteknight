@@ -33,5 +33,8 @@ export class TestPage {
     this.ds.pushDataFS(this.tb_collection,this.obj);
   }
 
+  pull_data_fs() {
+    this.ds.pullDataFS(this.tb_collection);
+  }
 
 }
