@@ -29,5 +29,11 @@
 <p>Firestore data pull  </p>
 <button ion-button (click)="pull_data_fs()">Pull data</button>
 
+<br><br>
+Test string : {{testtring}}
+
+      <li *ngFor="let item of items | async">
+        {{ item.artist }} {{ item.title }}
+      </li>
 
 </ion-content>

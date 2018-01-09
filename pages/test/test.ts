@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
 
 import { DataServicesProvider } from '../../providers/data-services/data-services';
 
@@ -17,8 +18,10 @@ export class TestPage {
   tb_collection: string;
   tb_fs_value1: string;
   tb_fs_value2: string;
+  testtring: string;
 
   obj: Item;
+  items: Observable<any[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public ds:DataServicesProvider) {
   }
@@ -34,7 +37,11 @@ export class TestPage {
   }
 
   pull_data_fs() {
-    this.ds.pullDataFS(this.tb_collection);
-  }
+    this.items=this.ds.pullDataFS(this.tb_collection);
+    this.items.subscribe(queriedItems => {
+      this.testtring = "testing";
+      this.testtring = queriedItems[5].title; 
+   });
 
+  }
 }

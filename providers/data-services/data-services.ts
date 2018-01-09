@@ -25,9 +25,15 @@ export class DataServicesProvider {
     this.itemsCollection.add(item.getData()); 
   }
 
-  pullDataFS(collectionName:string) {
+  pullDataFS(collectionName:string):Observable<any[]> {
     this.itemsCollection = this.afs.collection<any>(collectionName);  
     this.items = this.itemsCollection.valueChanges();
+/*
+    this.items.subscribe(queriedItems => {  
+      console.log(queriedItems[0]);
+    });
+*/
+    return this.items;
   }
 
 
