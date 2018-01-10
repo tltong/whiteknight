@@ -18,6 +18,12 @@ export class TestPage {
   tb_collection: string;
   tb_fs_value1: string;
   tb_fs_value2: string;
+
+  tb_fs_fieldName1: string;
+  tb_fs_fieldValue1: string;
+  tb_fs_fieldName2: string;
+  tb_fs_fieldValue2: string;
+
   testtring: string;
 
   obj: Item;
@@ -36,12 +42,23 @@ export class TestPage {
     this.ds.pushDataFS(this.tb_collection,this.obj);
   }
 
-  pull_data_fs() {
-    this.items=this.ds.pullDataFS(this.tb_collection);
+  pull_data_fs_simple() {
+    this.items=this.ds.pullDataFSSimpleQuery(this.tb_collection,this.tb_fs_fieldName1,this.tb_fs_fieldValue1);
+    //this.items=this.ds.pullDataFSCompoundQuery(this.tb_collection,this.tb_fs_fieldName1,this.tb_fs_fieldValue1,this.tb_fs_fieldName2,this.tb_fs_fieldValue2);
     this.items.subscribe(queriedItems => {
-      this.testtring = "testing";
-      this.testtring = queriedItems[5].title; 
+      this.testtring = queriedItems[0].title; 
    });
 
   }
+
+  pull_data_fs_compound() {
+    this.items=this.ds.pullDataFSCompoundQuery(this.tb_collection,this.tb_fs_fieldName1,this.tb_fs_fieldValue1,this.tb_fs_fieldName2,this.tb_fs_fieldValue2);
+    this.items.subscribe(queriedItems => {
+      this.testtring = queriedItems[0].title;
+   });
+
+  }
+
+
+
 }

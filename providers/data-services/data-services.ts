@@ -26,15 +26,24 @@ export class DataServicesProvider {
   }
 
   pullDataFS(collectionName:string):Observable<any[]> {
-    this.itemsCollection = this.afs.collection<any>(collectionName);  
+    this.itemsCollection = this.afs.collection<any>(collectionName);
     this.items = this.itemsCollection.valueChanges();
-/*
-    this.items.subscribe(queriedItems => {  
-      console.log(queriedItems[0]);
-    });
-*/
     return this.items;
   }
+
+
+  pullDataFSSimpleQuery(collectionName:string,fieldName:string,valueName:string):Observable<any[]> {
+    this.itemsCollection = this.afs.collection<any>(collectionName, ref => ref.where(fieldName,'==',valueName));
+    this.items = this.itemsCollection.valueChanges();
+    return this.items;
+  }
+
+  pullDataFSCompoundQuery(collectionName:string,fieldName1:string,valueName1:string,fieldName2:string,valueName2:string):Observable<any[]> {
+    this.itemsCollection = this.afs.collection<any>(collectionName, ref => ref.where(fieldName1,'==',valueName1).where(fieldName2,'==',valueName2));
+    this.items = this.itemsCollection.valueChanges();
+    return this.items;
+  }
+
 
 
 }

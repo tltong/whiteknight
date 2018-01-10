@@ -27,7 +27,24 @@
 
 <br><br><br><br>
 <p>Firestore data pull  </p>
-<button ion-button (click)="pull_data_fs()">Pull data</button>
+<ion-item>
+    <ion-label floating>Fieldname 1 </ion-label>
+    <ion-input type="text" [(ngModel)]="tb_fs_fieldName1"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label floating>Fieldvalue 1 </ion-label>
+    <ion-input type="text" [(ngModel)]="tb_fs_fieldValue1"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label floating>Fieldname 2 </ion-label>
+    <ion-input type="text" [(ngModel)]="tb_fs_fieldName2"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label floating>Fieldvalue 2 </ion-label>
+    <ion-input type="text" [(ngModel)]="tb_fs_fieldValue2"></ion-input>
+</ion-item>
+<button ion-button (click)="pull_data_fs_simple()">Pull data simple query</button>
+<button ion-button (click)="pull_data_fs_compound()">Pull data compound query</button>
 
 <br><br>
 Test string : {{testtring}}
