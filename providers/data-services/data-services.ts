@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import firebase from 'firebase';
+import 'firebase/firestore';
+import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
+
 
 import { AngularFireModule } from 'angularfire2';
 import {
@@ -17,6 +21,12 @@ export class DataServicesProvider {
 
   constructor(private afs: AngularFirestore) {
   }
+
+  uploadImage(storageLocation:string,imageString:string) {
+    storageRef = firebase.storage().ref(storageLocation);
+    parseUpload = storageRef.putString(imageString, 'data_url');
+  }  
+
 
   pushDataFS(collectionName:string,item:any) {
     

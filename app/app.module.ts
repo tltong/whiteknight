@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,6 +16,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestore,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { DataServicesProvider } from '../providers/data-services/data-services';
+import { PhoneServiceProvider } from '../providers/phone-service/phone-service';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAio_94Pw0FrTLCLAAh3-8oY45AN9m0bbg",
@@ -51,7 +53,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     AngularFireAuth,
-    DataServicesProvider 
+    DataServicesProvider,
+    PhoneServiceProvider 
   ]
 })
 export class AppModule {}

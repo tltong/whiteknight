@@ -53,4 +53,20 @@ Test string : {{testtring}}
         {{ item.artist }} {{ item.title }}
       </li>
 
+<br><br>
+Firebase file upload
+<ion-item>
+    <ion-label floating> Upload location</ion-label>
+    <ion-input type="text" [(ngModel)]="tb_upload_location"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label floating> Upload string</ion-label>
+    <ion-input type="text" [(ngModel)]="tb_upload_string"></ion-input>
+</ion-item>
+<button ion-button (click)="firebase_file_upload()">Firebase upload</button>
+
+<br><br>
+
+
+
 </ion-content>
