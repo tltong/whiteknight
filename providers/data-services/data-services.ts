@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
-
-
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
 import {
   AngularFirestore,
@@ -19,17 +18,38 @@ export class DataServicesProvider {
   private itemsCollection: AngularFirestoreCollection<any>;
   private items: Observable<any[]>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore,public afstorage: AngularFireStorage) {
   }
 
+  downloadImage(storageLocation:string):Observable<string > {
+    var profileUrl: Observable<any>;
+
+    profileUrl = this.afstorage.ref(storageLocation).getDownloadURL();
+
+//    var ref:AngularFireStorageReference = this.afstorage.ref(storageLocation);
+  //  profileUrl = ref.getDownloadURL();
+    return profileUrl;
+
+  } 
+  
   uploadImage(storageLocation:string,imageString:string) {
-    storageRef = firebase.storage().ref(storageLocation);
-    parseUpload = storageRef.putString(imageString, 'data_url');
+
+  //  let filePath = `my-pet-crocodile_${ new Date().getTime() }.jpg`;
+    let image = 'data:image/jpg;base64,' + imageString; 
+
+
+    this.afstorage.ref(storageLocation).putString(image,'data_url');
+//    this.afstorage.ref(storageLocation).putString(imageString,'data_url');
+
+/*
+//  firebase
+    let storageRef = firebase.storage().ref(storageLocation);
+    let parseUpload = storageRef.putString(imageString, 'data_url');
+*/
+
   }  
 
-
   pushDataFS(collectionName:string,item:any) {
-    
     this.itemsCollection = this.afs.collection<any>(collectionName);
     //this.itemsCollection.add({ singer: "the corr", name: "runaway" });
     this.itemsCollection.add(item.getData()); 

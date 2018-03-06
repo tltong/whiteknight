@@ -19,6 +19,9 @@ export class TestPage {
   tb_fs_value1: string;
   tb_fs_value2: string;
 
+  tb_upload_location:string;
+  tb_upload_string:string;
+
   tb_fs_fieldName1: string;
   tb_fs_fieldValue1: string;
   tb_fs_fieldName2: string;
@@ -26,6 +29,8 @@ export class TestPage {
 
   testtring: string;
 
+  downloaded: Observable<string | null>;
+ 
   obj: Item;
   items: Observable<any[]>;
 
@@ -36,6 +41,14 @@ export class TestPage {
     console.log('ionViewDidLoad TestPage');
   }
 
+  file_upload() {
+    this.ds.uploadImage(this.tb_upload_location,this.tb_upload_string);
+  }
+
+
+  file_download() {
+    this.downloaded = this.ds.downloadImage(this.tb_upload_location);
+  }
 
   push_data_fs() {
     this.obj = new Item(this.tb_fs_value1,this.tb_fs_value2);

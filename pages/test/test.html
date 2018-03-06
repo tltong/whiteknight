@@ -63,9 +63,11 @@ Firebase file upload
     <ion-label floating> Upload string</ion-label>
     <ion-input type="text" [(ngModel)]="tb_upload_string"></ion-input>
 </ion-item>
-<button ion-button (click)="firebase_file_upload()">Firebase upload</button>
-
-<br><br>
+<button ion-button (click)="file_upload()">File upload</button>
+<button ion-button (click)="file_download()">File download</button>
+<br>
+<img [src]="downloaded | async" />
+<br>
 
 
 
