@@ -68,7 +68,8 @@ Firebase file upload
 <br>
 <img [src]="downloaded | async" />
 <br>
-
+<button ion-button (click)="take_photo()">Take Photo</button>
+<img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
 
 
 </ion-content>

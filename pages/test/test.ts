@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 
 import { DataServicesProvider } from '../../providers/data-services/data-services';
+import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
 
 import { Item } from '../../utils/item'
 
@@ -30,15 +31,47 @@ export class TestPage {
   testtring: string;
 
   downloaded: Observable<string | null>;
- 
+  captureDataUrl: string; 
+
+
   obj: Item;
   items: Observable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public ds:DataServicesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams
+  ,public ds:DataServicesProvider, public ps: PhoneServiceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestPage');
+  }
+
+  take_photo() {
+
+    const title='photo';
+    const subtitle='photo';
+    const camera = 'camera';
+    const gallery = 'gallery';
+
+    this.ps.presentOptions(title,subtitle,camera,gallery).then( selected  =>
+      {
+        if (selected == camera) {
+          this.ps.takePhoto().then(imageData=> {
+            this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+          });
+        }else if (selected == gallery) {
+          this.ps.selectPhotoFromGallery().then(imageData=> {
+            this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+          });
+
+
+
+          this.ps.presentToast('gallery selected');
+        }
+      });
+
+
+
+
   }
 
   file_upload() {
