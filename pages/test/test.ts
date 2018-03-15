@@ -62,15 +62,9 @@ export class TestPage {
           this.ps.selectPhotoFromGallery().then(imageData=> {
             this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
           });
-
-
-
           this.ps.presentToast('gallery selected');
         }
       });
-
-
-
 
   }
 

@@ -5,6 +5,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
 import { EmailValidator } from '../../validators/email';
 
+import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
+
+
 @IonicPage()
 @Component({
   selector: 'page-signup',
@@ -14,16 +17,45 @@ export class SignupPage {
 
   public signupForm: FormGroup;
   public loading: Loading;
+  captureDataUrl: string; 
 
 
   constructor(public nav: NavController, public authData: AuthProvider,
     public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,public ps: PhoneServiceProvider) {
 
       this.signupForm = formBuilder.group({
+        name: ['', Validators.compose([Validators.required])],
+        gender: ['',Validators.compose([Validators.required])],
         email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-        password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+        password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+        description: [''],
+        dob: ['']
       });
+  }
+
+  photo() {
+
+    const title='photo';
+    const subtitle='photo';
+    const camera = 'camera';
+    const gallery = 'gallery';
+
+    this.ps.presentOptions(title,subtitle,camera,gallery).then( selected  =>
+      {
+        if (selected == camera) {
+          this.ps.takePhoto().then(imageData=> {
+            this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+          });
+        }else if (selected == gallery) {
+          this.ps.selectPhotoFromGallery().then(imageData=> {
+            this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+          });
+          this.ps.presentToast('gallery selected');
+        }
+      });    
+  
+ 
   }
 
   signupUser(){
