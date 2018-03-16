@@ -79,7 +79,13 @@ export class TestPage {
 
   push_data_fs() {
     this.obj = new Item(this.tb_fs_value1,this.tb_fs_value2);
-    this.ds.pushDataFS(this.tb_collection,this.obj);
+    this.ds.pushDataFSPromise(this.tb_collection,this.obj).then(id => { this.ps.presentToast(id);   });
+
+   
+
+//    this.ds.pushDataFS(this.tb_collection,this.obj);
+
+
   }
 
   pull_data_fs_simple() {

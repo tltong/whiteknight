@@ -34,20 +34,27 @@ export class DataServicesProvider {
   
   uploadImage(storageLocation:string,imageString:string) {
 
-  //  let filePath = `my-pet-crocodile_${ new Date().getTime() }.jpg`;
     let image = 'data:image/jpg;base64,' + imageString; 
-
-
     this.afstorage.ref(storageLocation).putString(image,'data_url');
-//    this.afstorage.ref(storageLocation).putString(imageString,'data_url');
-
-/*
-//  firebase
-    let storageRef = firebase.storage().ref(storageLocation);
-    let parseUpload = storageRef.putString(imageString, 'data_url');
-*/
-
   }  
+
+
+pushDataFSPromise(collectionName:string,item:any) {
+
+  var promise = new Promise((resolve, reject) => {
+
+  var itemsCollection: AngularFirestoreCollection<any>;
+  itemsCollection = this.afs.collection<any>(collectionName);
+  itemsCollection.add(item.getData()).then(function(docRef) {
+    resolve(docRef.id);
+  })
+  .catch(function(error) {
+    reject(error);
+  });
+  });
+  return promise;
+}
+
 
   pushDataFS(collectionName:string,item:any) {
     this.itemsCollection = this.afs.collection<any>(collectionName);
@@ -72,6 +79,57 @@ export class DataServicesProvider {
     this.itemsCollection = this.afs.collection<any>(collectionName, ref => ref.where(fieldName1,'==',valueName1).where(fieldName2,'==',valueName2));
     this.items = this.itemsCollection.valueChanges();
     return this.items;
+  }
+
+  pullDataSnapshotChangesFSSimpleQuery(collectionName:string,fieldName:string,valueName:string):Observable<any[]> {
+    this.itemsCollection = this.afs.collection<any>(collectionName, ref => ref.where(fieldName,'==',valueName));
+
+    this.items = this.itemsCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+    return this.items;
+  }
+ 
+  pullDataSnapshotChangesFS(collectionName:string):Observable<any[]> {
+
+    var itemsCollection: AngularFirestoreCollection<any>;
+    var items: Observable<any[]>;
+
+    itemsCollection = this.afs.collection<any>(collectionName);
+
+    items = itemsCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+    return items;
+  }
+
+  deleteDocument(collectionName:string, docID:string) {
+    this.itemsCollection = this.afs.collection<any>(collectionName);
+    this.itemsCollection.doc(docID).delete();    
+  }
+
+  updateDocumentPromise(collectionName:string, docID:string,item:any) {
+
+    var promise = new Promise((resolve, reject) => {
+
+      var itemsCollection: AngularFirestoreCollection<any>;
+      itemsCollection = this.afs.collection<any>(collectionName);
+      itemsCollection.doc(docID).update(item.getData()).then(function() {
+      resolve();
+       })
+      .catch(function(error) {
+       reject(error);
+    });
+    });
+   return promise;
   }
 
 
