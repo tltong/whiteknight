@@ -66,10 +66,11 @@ Firebase file upload
 <button ion-button (click)="file_upload()">File upload</button>
 <button ion-button (click)="file_download()">File download</button>
 <br>
-<img [src]="downloaded | async" />
+<img [src]="downloaded | async" *ngIf="downloaded"/>
 <br>
 <button ion-button (click)="take_photo()">Take Photo</button>
 <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
-
+<button ion-button (click)="upload_photo()">Upload Photo</button>
+<br>
 
 </ion-content>

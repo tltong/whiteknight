@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { DataServicesProvider } from '../../providers/data-services/data-services';
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
 
+
+
 import { Item } from '../../utils/item'
 
 
@@ -32,7 +34,7 @@ export class TestPage {
 
   downloaded: Observable<string | null>;
   captureDataUrl: string; 
-
+  photo: string;
 
   obj: Item;
   items: Observable<any[]>;
@@ -57,16 +59,22 @@ export class TestPage {
         if (selected == camera) {
           this.ps.takePhoto().then(imageData=> {
             this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+            this.photo = <string>imageData;
           });
         }else if (selected == gallery) {
           this.ps.selectPhotoFromGallery().then(imageData=> {
             this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+            this.photo = <string>imageData;
           });
           this.ps.presentToast('gallery selected');
         }
       });
-
   }
+
+  upload_photo() {
+    this.ds.uploadImage(this.tb_upload_location,this.photo);
+  }
+
 
   file_upload() {
     this.ds.uploadImage(this.tb_upload_location,this.tb_upload_string);
@@ -79,13 +87,7 @@ export class TestPage {
 
   push_data_fs() {
     this.obj = new Item(this.tb_fs_value1,this.tb_fs_value2);
-    this.ds.pushDataFSPromise(this.tb_collection,this.obj).then(id => { this.ps.presentToast(id);   });
-
-   
-
-//    this.ds.pushDataFS(this.tb_collection,this.obj);
-
-
+    this.ds.pushDataFSPromise(this.tb_collection,this.obj).then(id => { this.ps.presentToast(<string>id);   });
   }
 
   pull_data_fs_simple() {

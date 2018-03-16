@@ -18,7 +18,9 @@ export class DataServicesProvider {
   private itemsCollection: AngularFirestoreCollection<any>;
   private items: Observable<any[]>;
 
-  constructor(private afs: AngularFirestore,public afstorage: AngularFireStorage) {
+  constructor(private afs: AngularFirestore,public afstorage: AngularFireStorage
+              ,public ps:PhoneServiceProvider
+              ) {
   }
 
   downloadImage(storageLocation:string):Observable<string > {
@@ -31,11 +33,10 @@ export class DataServicesProvider {
     return profileUrl;
 
   } 
-  
-  uploadImage(storageLocation:string,imageString:string) {
 
+  uploadImage(storageLocation:string,imageString:string):AngularFireUploadTask {
     let image = 'data:image/jpg;base64,' + imageString; 
-    this.afstorage.ref(storageLocation).putString(image,'data_url');
+    return this.afstorage.ref(storageLocation).putString(image,'data_url');
   }  
 
 
