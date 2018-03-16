@@ -13,7 +13,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,public authData: AuthProvider) {
     firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
-        navCtrl.setRoot(LoginPage);
+        navCtrl.setRoot('LoginPage');
       }
     });
   }
