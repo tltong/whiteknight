@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { DataServicesProvider } from '../../providers/data-services/data-services';
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
-
+import { AngularFireStorage } from 'angularfire2/storage';
 
 
 import { Item } from '../../utils/item'
@@ -35,6 +35,8 @@ export class TestPage {
   downloaded: Observable<string | null>;
   captureDataUrl: string; 
   photo: string;
+  uploadPercent: Observable<number>;
+
 
   obj: Item;
   items: Observable<any[]>;
@@ -72,7 +74,8 @@ export class TestPage {
   }
 
   upload_photo() {
-    this.ds.uploadImage(this.tb_upload_location,this.photo);
+    const task = this.ds.uploadImage(this.tb_upload_location,this.photo);
+    this.uploadPercent=task.percentageChanges();
   }
 
 

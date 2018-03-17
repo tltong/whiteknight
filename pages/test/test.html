@@ -72,5 +72,7 @@ Firebase file upload
 <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
 <button ion-button (click)="upload_photo()">Upload Photo</button>
 <br>
+<div>{{ uploadPercent | async }}</div>
+<br>
 
 </ion-content>
