@@ -7,7 +7,6 @@ import { EmailValidator } from '../../validators/email';
 
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
 
-
 @IonicPage()
 @Component({
   selector: 'page-signup',
@@ -18,7 +17,7 @@ export class SignupPage {
   public signupForm: FormGroup;
   public loading: Loading;
   captureDataUrl: string; 
-
+  photoString:string;
 
   constructor(public nav: NavController, public authData: AuthProvider,
     public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
@@ -46,15 +45,16 @@ export class SignupPage {
         if (selected == camera) {
           this.ps.takePhoto().then(imageData=> {
             this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+            this.photoString=<string>imageData;
           });
         }else if (selected == gallery) {
           this.ps.selectPhotoFromGallery().then(imageData=> {
             this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+            this.photoString=<string>imageData;
           });
           this.ps.presentToast('gallery selected');
         }
       });    
-  
  
   }
 
@@ -86,6 +86,7 @@ export class SignupPage {
       this.loading.present();
     }
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');

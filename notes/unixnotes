@@ -11,6 +11,12 @@ sudo shutdown -h now
 desktop environments
 https://www.ubuntupit.com/install-various-desktop-environment-ubuntu/
 
+show disk space
+df- h
+
+show directory size
+du -hs <directory name>
+
 
 
 

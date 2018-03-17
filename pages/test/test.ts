@@ -6,10 +6,7 @@ import { DataServicesProvider } from '../../providers/data-services/data-service
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
 import { AngularFireStorage } from 'angularfire2/storage';
 
-
 import { Item } from '../../utils/item'
-
-
 
 @IonicPage()
 @Component({
