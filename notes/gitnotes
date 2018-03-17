@@ -1,0 +1,39 @@
+Background
+https://www.atlassian.com/git/tutorials/using-branches/git-merge
+
+git init
+git add *
+git remote add origin https://github.com/tltong/whiteknight.git
+git remote add origin https://github.com/tltong/whiteknightfb.git
+
+git config --global user.email "tltong@yahoo.co.uk"
+git config --global user.name "tltong"
+git config credential.helper store
+
+git commit -m "<comment>"
+git push -u origin master
+
+git log
+git reset --hard <commit hash>
+(or use git pull or git fetch)
+
+- to fetch latest version from repo
+git reset --hard HEAD
+git clean -xffd
+git pull
+
+** branch **
+
+first create branch on github website
+
+switch to new branch : git checkout -b <branch name>
+check branches : git branch
+add files and commit : git add (necessary for file changes too), git commit
+push changes to new branch : git push -u origin <branch name>
+
+** merging **
+
+reset to latest commit from working branch - git reset --hard
+switch to master branch - git checkout master
+merge with working branch - git merge <branch name>
+git add, git commit, git push  (perhaps redundant)

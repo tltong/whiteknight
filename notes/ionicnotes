@@ -1,0 +1,123 @@
+** firebase file upload and camera **
+
+https://javebratt.com/angularfire2-storage-api/
+(jave brett)
+
+https://blog.angular.io/file-uploads-come-to-angularfire-6842352b3b47
+
+http://tphangout.com/angular-5-firebase-storage-with-angularfire-2/
+(downloadURL())
+
+https://github.com/angular/angularfire2/blob/master/docs/storage/storage.md
+(angularfirestorage functional spec!)
+
+https://alligator.io/ionic/angularfire2-file-uploads-ionic/
+(with angularfire!!!)
+
+https://code.tutsplus.com/tutorials/how-to-create-a-camera-app-with-ionic-2--cms-28205
+(note android permission)
+
+https://scotch.io/@shangyilim/take-photos-with-ionic-2-and-upload-via-firebase
+(note firebase initialisation)
+
+https://ionicframework.com/docs/native/camera/
+
+https://devfanaticblog.com/working-with-camera-in-ionic-2-and-ionic-native/
+
+https://devdactic.com/ionic-image-gallery-zoom/
+
+https://blog.ionicframework.com/ionic-native-accessing-ios-photos-and-android-gallery-part-2/
+
+https://ionicframework.com/docs/native/image-picker/
+
+
+** Tour of heroes **
+https://angular.io/tutorial
+
+
+** angular **
+
+https://angular.io/guide/displaying-data      
+https://alligator.io/angular/async-pipe/
+
+** ionic **
+ionic start myApp blank --type=ionic-angular 
+
+<run from project folder>  npm install firebase angularfire2
+<run from project folder>  ionic generate provider Auth
+<run from project folder>  ionic generate page Login
+<run from project folder>  ionic generate page ResetPassword
+<run from project folder>  ionic generate page Signup
+
+https://ionicframework.com/docs/components/#overview
+
+
+** firebase (storage) **
+
+http://masteringionic.com/blog/2017-03-02-uploading-images-to-firebase-storage-with-ionic-part-1/
+https://scotch.io/@shangyilim/take-photos-with-ionic-2-and-upload-via-firebase
+https://firebase.google.com/docs/storage/web/upload-files
+https://angularfirebase.com/lessons/angular-file-uploads-to-firebase-storage/
+
+http://tphangout.com/ionic-2-serving-images-with-firebase-storage/
+
+
+** firestore **
+https://alligator.io/angular/cloud-firestore-angularfire/ (delete document)
+https://github.com/angular/angularfire2/blob/master/docs/firestore/collections.md
+https://github.com/angular/angularfire2/blob/master/docs/firestore/documents.md
+https://angularfirebase.com/lessons/firestore-with-angularfire-basics/
+https://angularfirebase.com/lessons/firestore-advanced-usage-angularfire/
+https://coursetro.com/posts/code/94/Use-Angular-with-Google%27s-Cloud-Firestore---Tutorial
+https://www.joshmorony.com/building-a-crud-ionic-2-application-with-firebase-angularfire/
+http://www.programmingworldtech.com/2017/10/using-cloud-firestore-in-ionic-3-with.html
+http://masteringionic.com/blog/2017-10-22-using-firebase-cloud-firestore-with-ionic/ (not angularfire)
+
+example:
+https://code.tutsplus.com/tutorials/how-to-build-an-angular-2-service--cms-27943
+
+
+
+** firestore (query) **
+https://github.com/angular/angularfire2/blob/master/docs/firestore/collections.md
+https://github.com/angular/angularfire2/blob/master/docs/firestore/querying-collections.md
+https://github.com/angular/angularfire2/blob/master/docs/firestore/documents.md
+https://firebase.google.com/docs/firestore/query-data/queries
+
+https://console.firebase.google.com/project/whiteknight-9f398/database/firestore/data~2Fmovies~2F0bmjNJ9ek9oUdvOLHD38
+
+Error message:
+Funtion CollectionReference.add() requires its first argument to be of type object, but it was a custom Item object
+
+Potential solutions:
+https://stackoverflow.com/questions/46578701/firestore-add-custom-object-to-db
+https://github.com/firebase/firebase-js-sdk/issues/311
+
+
+
+** building and running on devices **
+
+ionic cordova platform rm android
+ionic cordova platform add android
+ionic cordova platform rm ios
+ionic cordova platform add ios
+
+ionic cordova run android
+ionic cordova build android
+
+
+creating AVD using android studio
+https://developer.android.com/studio/run/managing-avds.html
+
+error : "your cpu does not support required features (vt-x or svm)"
+
+genymotion
+# apt-get install libxi-dev libxmu-dev
+mkdir QtLibs && mv *Qt*.so* QtLibs
+
+
+
+
+** misc **
+update cli
+npm i -g ionic@latest

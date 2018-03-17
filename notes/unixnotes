@@ -1,0 +1,22 @@
+tight vnc viewer
+https://portableapps.com/node/32118
+
+restarting vncserver
+vncserver -kill :1
+vncserver
+
+shutdown
+sudo shutdown -h now
+
+desktop environments
+https://www.ubuntupit.com/install-various-desktop-environment-ubuntu/
+
+
+
+
+enable gcloud nested virtualisation
+http://www.brianlinkletter.com/enable-nested-virtualization-on-google-cloud/
+https://cloud.google.com/compute/docs/instances/enable-nested-virtualization-vm-instances#enablenestedvirt 
+
+sudo kvm-ok
+"/dev/kvm device:permission denied"
