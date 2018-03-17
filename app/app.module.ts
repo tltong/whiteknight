@@ -19,6 +19,7 @@ import { AngularFirestore,AngularFirestoreCollection } from 'angularfire2/firest
 import { DataServicesProvider } from '../providers/data-services/data-services';
 import { PhoneServiceProvider } from '../providers/phone-service/phone-service';
 import { Camera } from '@ionic-native/camera';
+import { MemberServiceProvider } from '../providers/member-service/member-service';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAio_94Pw0FrTLCLAAh3-8oY45AN9m0bbg",
@@ -58,7 +59,8 @@ export const firebaseConfig = {
     AngularFireAuth,
     DataServicesProvider,
     PhoneServiceProvider,
-    Camera
+    Camera,
+    MemberServiceProvider
   ]
 })
 export class AppModule {}

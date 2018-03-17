@@ -12,6 +12,7 @@ import { PhoneServiceProvider } from '../../providers/phone-service/phone-servic
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
+
 export class SignupPage {
 
   public signupForm: FormGroup;
@@ -29,8 +30,15 @@ export class SignupPage {
         email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
         password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
         description: [''],
-        dob: ['']
+        dob: ['',Validators.compose([Validators.required])]
       });
+  }
+
+  test() {
+
+  //  const date = new Date(this.signupForm.value.dob);
+
+//    this.ps.presentToast(date.getMonth());
   }
 
   photo() {

@@ -58,9 +58,14 @@
     <br>
     <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
 
-    <button ion-button block type="submit">
+    <button ion-button (click)="test()">Test</button>
+
+    <button ion-button block [disabled]="!signupForm.valid" type="submit">
       Create an Account
     </button>
+
+
+
   </form>
 
 </ion-content>

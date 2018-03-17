@@ -45,6 +45,7 @@ ionic start myApp blank --type=ionic-angular
 
 <run from project folder>  npm install firebase angularfire2
 <run from project folder>  ionic generate provider Auth
+                           e.g. ionic generated provider MemberService
 <run from project folder>  ionic generate page Login
 <run from project folder>  ionic generate page ResetPassword
 <run from project folder>  ionic generate page Signup

@@ -4,9 +4,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { DataServicesProvider } from '../../providers/data-services/data-services';
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
+//import { MemberServiceProvider } from '../../providers/member-service/member-service';
+
 import { AngularFireStorage } from 'angularfire2/storage';
 
 import { Item } from '../../utils/item'
+import { Member } from '../../dataclass/member'
 
 @IonicPage()
 @Component({
@@ -34,12 +37,13 @@ export class TestPage {
   photo: string;
   uploadPercent: Observable<number>;
 
-
   obj: Item;
   items: Observable<any[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams
-  ,public ds:DataServicesProvider, public ps: PhoneServiceProvider) {
+  ,public ds:DataServicesProvider, public ps: PhoneServiceProvider
+  //, private ms:MemberServiceProvider
+   ) {
   }
 
   ionViewDidLoad() {
@@ -68,6 +72,15 @@ export class TestPage {
           this.ps.presentToast('gallery selected');
         }
       });
+  }
+
+  test_member() {
+    
+    var mbr = new Member('TL','male','18-08-76','tltong');
+    
+    this.ps.presentToast(mbr.name);    
+    this.ps.presentToast(mbr.gender);    
+
   }
 
   upload_photo() {
