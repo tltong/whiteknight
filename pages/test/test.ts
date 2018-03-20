@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { DataServicesProvider } from '../../providers/data-services/data-services';
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
-//import { MemberServiceProvider } from '../../providers/member-service/member-service';
+import { MemberServiceProvider } from '../../providers/member-service/member-service';
 
 import { AngularFireStorage } from 'angularfire2/storage';
 
@@ -42,7 +42,7 @@ export class TestPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams
   ,public ds:DataServicesProvider, public ps: PhoneServiceProvider
-  //, private ms:MemberServiceProvider
+  ,private ms:MemberServiceProvider
    ) {
   }
 
@@ -75,11 +75,13 @@ export class TestPage {
   }
 
   test_member() {
+   
+    var mbr = this.ms.constructMember('TL','male','18-08-76','tltong');
+    mbr = this.ms.updateDescription(mbr,'good');
+    this.ms.pushMember("users",mbr).then(id => {
+      this.ps.presentToast(<string>id);});
     
-    var mbr = new Member('TL','male','18-08-76','tltong');
-    
-    this.ps.presentToast(mbr.name);    
-    this.ps.presentToast(mbr.gender);    
+//    this.ps.presentToast(mbr.description);    
 
   }
 

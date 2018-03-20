@@ -6,6 +6,8 @@ import { HomePage } from '../home/home';
 import { EmailValidator } from '../../validators/email';
 
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
+import { MemberServiceProvider } from '../../providers/member-service/member-service';
+
 
 @IonicPage()
 @Component({
@@ -22,7 +24,9 @@ export class SignupPage {
 
   constructor(public nav: NavController, public authData: AuthProvider,
     public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,public ps: PhoneServiceProvider) {
+    public alertCtrl: AlertController,public ps: PhoneServiceProvider
+    ,public ms:MemberServiceProvider
+    ) {
 
       this.signupForm = formBuilder.group({
         name: ['', Validators.compose([Validators.required])],
@@ -35,10 +39,8 @@ export class SignupPage {
   }
 
   test() {
-
   //  const date = new Date(this.signupForm.value.dob);
-
-//    this.ps.presentToast(date.getMonth());
+  //    this.ps.presentToast(date.getMonth());
   }
 
   photo() {
@@ -70,10 +72,13 @@ export class SignupPage {
     if (!this.signupForm.valid){
       console.log(this.signupForm.value);
     } else {
+/*
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
         this.nav.setRoot(HomePage);
-      }, (error) => {
+
+      }, 
+      (error) => {
         this.loading.dismiss().then( () => {
           var errorMessage: string = error.message;
             let alert = this.alertCtrl.create({
@@ -87,13 +92,17 @@ export class SignupPage {
             });
           alert.present();
         });
-      });
+      } // error
+      );  // then
       this.loading = this.loadingCtrl.create({
         dismissOnPageChange: true,
       });
       this.loading.present();
-    }
-  }
+  */    
+    } //else
+
+
+  } // function
 
 
   ionViewDidLoad() {

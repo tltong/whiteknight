@@ -40,6 +40,20 @@ export class DataServicesProvider {
   }  
 
 
+/* //promise template 
+  var promise = new Promise((resolve, reject) => {
+
+  <do something>
+  .then(function(docRef) {
+    resolve(docRef.id);
+  })
+  .catch(function(error) {
+    reject(error);
+  });
+  });
+  return promise;
+*/
+
 pushDataFSPromise(collectionName:string,item:any) {
 
   var promise = new Promise((resolve, reject) => {
