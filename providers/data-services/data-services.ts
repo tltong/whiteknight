@@ -55,9 +55,26 @@ export class DataServicesProvider {
 */
 
 pushDataNestedCollection(collectionName:string,docID:string,nestedCollectionName:string,item:any) {
+
+  var promise = new Promise((resolve, reject) => {
+
+
+    var itemsCollection: AngularFirestoreCollection<any>;
+    itemsCollection = this.afs.collection<any>(collectionName).doc(docID).collection<any>(nestedCollectionName);
+    itemsCollection.add(item.getData()).then(function(docRef) {
+    resolve(docRef.id);
+    })
+    .catch(function(error) {
+      reject(error);
+    });
+    });
+    return promise;
+
+/*
   var itemsCollection: AngularFirestoreCollection<any>;
   itemsCollection = this.afs.collection<any>(collectionName).doc(docID).collection<any>(nestedCollectionName);
   itemsCollection.add(item.getData());
+*/
 }
 
 pushDataFSPromise(collectionName:string,item:any) {

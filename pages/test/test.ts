@@ -79,8 +79,11 @@ export class TestPage {
     var mbr = this.ms.constructMember('TL','male','18-08-76','tltong');
     mbr = this.ms.updateDescription(mbr,'good');
     this.ms.pushMember(mbr).then(id => {
-      this.ps.presentToast(<string>id);});
-    
+      this.ms.updateMemberPhoto(mbr,<string>id,"DFASFD").then( photoID => {
+        this.ps.presentToast(<string>photoID);
+      });
+    });
+//      this.ms.updateMemberPhoto(mbr,"DFASFD");    
 //    this.ps.presentToast(mbr.description);    
 
   }

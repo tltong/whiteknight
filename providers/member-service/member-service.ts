@@ -5,11 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import { DataServicesProvider } from '../../providers/data-services/data-services';
 import { PhoneServiceProvider } from '../../providers/phone-service/phone-service';
 import { Member } from '../../dataclass/member';
+import { Photo } from '../../dataclass/photo';
 
 @Injectable()
 export class MemberServiceProvider {
 
-  const collectionName="users";
+  readonly collectionName:string ="users";
+  readonly photoCollectionName:string = "photo";
  
   constructor(private ds:DataServicesProvider, private ps:PhoneServiceProvider ) {
   }
@@ -40,7 +42,7 @@ export class MemberServiceProvider {
     this.ds.pushDataFSPromise(this.collectionName,member).then ( id => {
       member.docID = <string>id;
       this.ds.updateDocumentPromise(this.collectionName,<string>id,member).then( function(id) {
- //       resolve(id);
+        resolve(id);
       })
       .catch(function(error) {
       reject(error);
@@ -50,6 +52,26 @@ export class MemberServiceProvider {
     });
     return promise;
   }  
+
+  updateMemberPhoto(member:Member,docID:string,photoString:string) {
+
+    var promise = new Promise((resolve, reject) => {
+
+    var photo = new Photo(photoString);
+    this.ds.pushDataNestedCollection(this.collectionName,docID,this.photoCollectionName,photo).then(function(id) {
+      resolve(id);
+    })
+    .catch(function(error) {
+      reject(error);
+    });
+  
+    });
+    return promise;
+
+//    var photo = new Photo(photoString);
+//    this.ds.pushDataNestedCollection(this.collectionName,docID,this.photoCollectionName,photo);
+
+  }
 
   updateDocID(member:Member,docID:string):Member {
     member.docID = docID;
