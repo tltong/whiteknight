@@ -78,7 +78,7 @@ export class TestPage {
    
     var mbr = this.ms.constructMember('TL','male','18-08-76','tltong');
     mbr = this.ms.updateDescription(mbr,'good');
-    this.ms.pushMember("users",mbr).then(id => {
+    this.ms.pushMember(mbr).then(id => {
       this.ps.presentToast(<string>id);});
     
 //    this.ps.presentToast(mbr.description);    

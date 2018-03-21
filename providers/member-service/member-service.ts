@@ -9,6 +9,8 @@ import { Member } from '../../dataclass/member';
 @Injectable()
 export class MemberServiceProvider {
 
+  const collectionName="users";
+ 
   constructor(private ds:DataServicesProvider, private ps:PhoneServiceProvider ) {
   }
 
@@ -31,13 +33,13 @@ export class MemberServiceProvider {
   return promise;
 */
 
-  pushMember(collectionName:string,member:Member) {
+  pushMember(member:Member) {
 
     var promise = new Promise((resolve, reject) => {
 
-    this.ds.pushDataFSPromise(collectionName,member).then ( id => {
+    this.ds.pushDataFSPromise(this.collectionName,member).then ( id => {
       member.docID = <string>id;
-      this.ds.updateDocumentPromise(collectionName,<string>id,member).then( function(id) {
+      this.ds.updateDocumentPromise(this.collectionName,<string>id,member).then( function(id) {
  //       resolve(id);
       })
       .catch(function(error) {
