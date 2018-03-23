@@ -73,9 +73,39 @@ export class SignupPage {
       console.log(this.signupForm.value);
     } else {
 /*
+      let member = this.ms.constructMember(this.signupForm.value.name,
+                   this.signupForm.value.gender,this.signupForm.value.dob,
+                   this.signupForm.value.email);
+
+      if (this.signupForm.value.description != null) { 
+        member = this.ms.updateDescription(member,this.signupForm.value.description);
+      }
+     
+      this.ms.pushMember(member).then(id => { 
+        if (this.photoString!=null) {
+          this.ms.updateMemberPhoto(member,member.docID,this.photoString);
+        }
+      });
+*/
+
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
-        this.nav.setRoot(HomePage);
+
+        let member = this.ms.constructMember(this.signupForm.value.name,
+                     this.signupForm.value.gender,this.signupForm.value.dob,
+                     this.signupForm.value.email);
+
+        if (this.signupForm.value.description != null) { 
+          member = this.ms.updateDescription(member,this.signupForm.value.description);
+        }
+     
+        this.ms.pushMember(member).then(id => { 
+          if (this.photoString!=null) {
+            this.ms.updateMemberPhoto(member,member.docID,this.photoString).then( () => {
+              this.nav.setRoot(HomePage);
+            });
+          }
+        });
 
       }, 
       (error) => {
@@ -98,7 +128,7 @@ export class SignupPage {
         dismissOnPageChange: true,
       });
       this.loading.present();
-  */    
+      
     } //else
 
 

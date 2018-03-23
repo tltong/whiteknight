@@ -52,9 +52,6 @@
       <ion-label stacked>Describe youself</ion-label>
       <ion-input formControlName="description" type="text"></ion-input>
     </ion-item>
-
-
-    <button ion-button (click)="photo()">Photo</button>
     <br>
     <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
 
@@ -67,6 +64,8 @@
 
 
   </form>
+  <br>
+  <button ion-button (click)="photo()">Photo</button>
 
 </ion-content>
 

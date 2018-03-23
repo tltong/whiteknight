@@ -12,6 +12,8 @@ export class MemberServiceProvider {
 
   readonly collectionName:string ="users";
   readonly photoCollectionName:string = "photo";
+  readonly photoLocation = "user_photos";
+
  
   constructor(private ds:DataServicesProvider, private ps:PhoneServiceProvider ) {
   }
@@ -56,8 +58,10 @@ export class MemberServiceProvider {
   updateMemberPhoto(member:Member,docID:string,photoString:string) {
 
     var promise = new Promise((resolve, reject) => {
-
-    var photo = new Photo(photoString);
+    let photoLocation = this.photoLocation + '/'+ btoa(member.email)+'.jpg';
+    
+    let uploadtask = this.ds.uploadImage(photoLocation,photoString);
+    var photo = new Photo(photoLocation);
     this.ds.pushDataNestedCollection(this.collectionName,docID,this.photoCollectionName,photo).then(function(id) {
       resolve(id);
     })
@@ -67,10 +71,6 @@ export class MemberServiceProvider {
   
     });
     return promise;
-
-//    var photo = new Photo(photoString);
-//    this.ds.pushDataNestedCollection(this.collectionName,docID,this.photoCollectionName,photo);
-
   }
 
   updateDocID(member:Member,docID:string):Member {
