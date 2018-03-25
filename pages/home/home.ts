@@ -22,6 +22,10 @@ export class HomePage {
     this.navCtrl.push('TestPage');
   }
 
+  goToCreateTaskPage() {
+    this.navCtrl.push('CreateTaskPage');
+  }
+
   logout() {
     this.authData.logoutUser();
   }
