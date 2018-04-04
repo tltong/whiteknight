@@ -6,15 +6,17 @@ export class Task {
 	public date:string;
 	public completedDate:string;
 	public difficulty:string;
-	public requesterID:string;
-	public state:string; // completed, in-progress, open
+	public requesterEmail:string;
+	public state:string; // completed, in-progress, open, draft
 	
-  constructor(title,description,date,difficulty,requesterID){
+  constructor(title,description,difficulty,date,requesterEmail){
 		this.title=title;
 		this.description=description;
 		this.date=date;
 		this.difficulty=difficulty
-		this.requesterID=requesterID;
+		this.requesterEmail=requesterEmail;
+
+    this.state = "open";
   }
 
    getData(): object {

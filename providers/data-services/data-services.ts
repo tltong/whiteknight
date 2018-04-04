@@ -23,6 +23,13 @@ export class DataServicesProvider {
               ) {
   }
 
+  getCurrentUserEmail():string {
+    var user = firebase.auth().currentUser;
+    return user.email;
+
+  }
+
+
   downloadImage(storageLocation:string):Observable<string > {
     var profileUrl: Observable<any>;
 

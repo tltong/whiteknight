@@ -15,4 +15,48 @@
 
 <ion-content padding>
 
+  <form [formGroup]="taskForm" (submit)="createTask()" novalidate>
+    <ion-item>
+      <ion-label stacked>Title</ion-label>
+      <ion-input formControlName="title" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-input formControlName="description" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Difficulty</ion-label>
+        <ion-select formControlName="difficulty">
+          <ion-option value="Difficult">Difficult</ion-option>
+          <ion-option value="Normal">Normal</ion-option>
+          <ion-option value="Easy">Easy</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
+
+
+
+    <button ion-button block type="submit">
+      Create Task
+    </button>
+
+  </form>
+
+  <button ion-button (click)="photo()">Photo</button>
+  <button ion-button (click)="test()">Test</button>
+
+
+
+
+
+
+
+
+
+
+
+
 </ion-content>

@@ -14,8 +14,12 @@ export class TaskServiceProvider {
   constructor(private ds:DataServicesProvider, private ps:PhoneServiceProvider) {
   }
 
-  constructTask(title,description,date,difficulty,requesterID):Task {
-		return new Task(title,description,date,difficulty,requesterID);
+  constructTask(title,description,difficulty):Task {
+    let date = new Date().toISOString();
+    let requesterID = this.ds.getCurrentUserEmail();
+
+    // default task state is 'open'
+		return new Task(title,description,difficulty,date,requesterID);  
   }
 
   updateCompletedData(task:Task,date):Task {
