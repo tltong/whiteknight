@@ -35,6 +35,8 @@
         </ion-select>
     </ion-item>
 
+<button ion-button type="button"(click)="photo()">Photo</button>
+
     <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
 
 
@@ -45,7 +47,6 @@
 
   </form>
 
-  <button ion-button (click)="photo()">Photo</button>
   <button ion-button (click)="test()">Test</button>
 
 

@@ -11,16 +11,40 @@ import { Photo } from '../../dataclass/photo';
 @Injectable()
 export class TaskServiceProvider {
 
+  readonly collectionName:string ="tasks";
+  readonly photoCollectionName:string = "photo";
+  readonly photoLocation = "task_photos";
+
   constructor(private ds:DataServicesProvider, private ps:PhoneServiceProvider) {
   }
 
-  constructTask(title,description,difficulty):Task {
+  constructTask(title,description,difficulty,imageString):Task {
     let date = new Date().toISOString();
     let requesterID = this.ds.getCurrentUserEmail();
 
     // default task state is 'open'
-		return new Task(title,description,difficulty,date,requesterID);  
+		return new Task(title,description,difficulty,date,requesterID,imageString);  
   }
+
+
+  pushTask(task:Task) {
+    var promise = new Promise((resolve, reject) => {
+    this.ds.pushDataFSPromise(this.collectionName,task).then ( id => {
+      task.docID = <string>id;
+      this.ds.updateDocumentPromise(this.collectionName,<string>id,task).then( function(id) {
+        resolve(id);
+      })
+      .catch(function(error) {
+      reject(error);
+      });
+      resolve(id);
+    });
+    });
+    return promise;
+  }
+
+
+
 
   updateCompletedData(task:Task,date):Task {
     task.completedDate=date;
