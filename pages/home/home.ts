@@ -10,6 +10,7 @@ import firebase from 'firebase';
 })
 export class HomePage {
 
+  tb_text:string;
   constructor(public navCtrl: NavController,public authData: AuthProvider) {
     firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
@@ -25,6 +26,11 @@ export class HomePage {
   goToCreateTaskPage() {
     this.navCtrl.push('CreateTaskPage');
   }
+
+  goToEditTaskPage() {
+    this.navCtrl.push('EditTaskPage',{taskId:this.tb_text });
+  }
+
 
   logout() {
     this.authData.logoutUser();

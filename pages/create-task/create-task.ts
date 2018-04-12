@@ -74,7 +74,7 @@ export class CreateTaskPage {
                                      this.taskForm.value.difficulty,
                                      this.photoString
                                     );
-    this.ts.pushTask(task).then (id => { this.ps.presentToast(id); });
+    this.ts.pushTask(task).then (id => { this.ps.presentToast(<string>id); });
   }
 
   ionViewDidLoad() {
