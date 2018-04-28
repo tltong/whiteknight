@@ -18,7 +18,7 @@ export class CreateTaskPage {
 
   public taskForm: FormGroup;
   captureDataUrl: string; 
-  photoString:string = null;
+  photoString:string = 'ABCD';
 
   constructor(public formBuilder:FormBuilder,public ps:PhoneServiceProvider,
               public ts:TaskServiceProvider,public ds:DataServicesProvider) {
@@ -68,13 +68,14 @@ export class CreateTaskPage {
   }
 
   createTask() {
-
     let task = this.ts.constructTask(this.taskForm.value.title,
                                      this.taskForm.value.description,
                                      this.taskForm.value.difficulty,
                                      this.photoString
                                     );
-    this.ts.pushTask(task).then (id => { this.ps.presentToast(<string>id); });
+    this.ts.pushTask(task).then (id => { 
+      this.ps.presentToast(<string>id); 
+    });
   }
 
   ionViewDidLoad() {

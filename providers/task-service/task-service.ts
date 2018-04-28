@@ -32,7 +32,8 @@ export class TaskServiceProvider {
     this.ds.pushDataFSPromise(this.collectionName,task).then ( id => {
       task.docID = <string>id;
       this.ds.updateDocumentPromise(this.collectionName,<string>id,task).then( function(id) {
-        resolve(id);
+        this.ps.presentToast('updated document');
+      //resolve('updated');
       })
       .catch(function(error) {
       reject(error);
@@ -43,7 +44,23 @@ export class TaskServiceProvider {
     return promise;
   }
 
+  updateTaskPhoto(task:Task) {
 
+    var promise = new Promise((resolve, reject) => {
+    let photoLocation = this.photoLocation + '/'+ task.docID+'.jpg';
+    
+    let uploadtask = this.ds.uploadImage(photoLocation,task.imageString);
+    var photo = new Photo(photoLocation);
+    this.ds.pushDataNestedCollection(this.collectionName,task.docID,this.photoCollectionName,photo).then(function(id) {
+      resolve(id);
+    })
+    .catch(function(error) {
+      reject(error);
+    });
+  
+    });
+    return promise;
+  }
 
 
   updateCompletedData(task:Task,date):Task {
