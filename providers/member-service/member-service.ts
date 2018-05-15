@@ -43,6 +43,7 @@ export class MemberServiceProvider {
 
     this.ds.pushDataFSPromise(this.collectionName,member).then ( id => {
       member.docID = <string>id;
+
       this.ds.updateDocumentPromise(this.collectionName,<string>id,member).then( function(id) {
         resolve(id);
       })

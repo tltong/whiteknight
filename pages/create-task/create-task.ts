@@ -20,16 +20,21 @@ export class CreateTaskPage {
   captureDataUrl: string; 
   photoString:string = 'ABCD';
 
+
   constructor(public formBuilder:FormBuilder,public ps:PhoneServiceProvider,
               public ts:TaskServiceProvider,public ds:DataServicesProvider) {
 
     this.taskForm = formBuilder.group({
       title: ['', Validators.compose([Validators.required])],
       description: ['', Validators.compose([Validators.required])],
-      difficulty: ['',Validators.compose([Validators.required])]
+      difficulty: ['',Validators.compose([Validators.required])],
+      docID: ['',Validators.compose([Validators.required])]
+
     });    
 
-
+    this.taskForm.controls["title"].setValue('task');
+    this.taskForm.controls["description"].setValue('do stuff');
+    this.taskForm.controls["difficulty"].setValue('Difficult');
 
   }
 
@@ -62,8 +67,8 @@ export class CreateTaskPage {
 
 
   test() {
-   
-    this.ps.presentToast(this.ds.getCurrentUserEmail());
+
+//    this.ps.presentToast(this.ds.getCurrentUserEmail());
 //    this.ps.presentToast(new Date().toISOString());
   }
 
@@ -74,7 +79,19 @@ export class CreateTaskPage {
                                      this.photoString
                                     );
     this.ts.pushTask(task).then (id => { 
-      this.ps.presentToast(<string>id); 
+
+     
+      this.ts.setTaskDocID(task,<string>id).then (id =>{
+        this.ps.presentToast('updated');
+      });
+
+  
+
+
+      //this.taskForm.controls["docID"].setValue(<string>id);
+      //this.ps.presentToast(<string>id); 
+      
+
     });
   }
 

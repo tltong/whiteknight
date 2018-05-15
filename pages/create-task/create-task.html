@@ -35,6 +35,12 @@
         </ion-select>
     </ion-item>
 
+    <ion-item>
+      <ion-label stacked>docID</ion-label>
+      <ion-input formControlName="docID" type="text"></ion-input>
+    </ion-item>
+
+
 <button ion-button type="button"(click)="photo()">Photo</button>
 
     <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
