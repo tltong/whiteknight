@@ -9,15 +9,17 @@ export class Task {
 	public completedDate:string;
 	public difficulty:string;
 	public requesterEmail:string;
-	public state:string; // completed, in-progress, open, draft
+	public requesterUID;
+  public state:string; // completed, in-progress, open, draft
 	
-  constructor(title,description,difficulty,date,requesterEmail,imageString){
+  constructor(title,description,difficulty,date,requesterEmail,UID,imageString){
 		this.title=title;
 		this.description=description;
 		this.date=date;
 		this.difficulty=difficulty;
 		this.requesterEmail=requesterEmail;
-                this.imageString=imageString;
+    this.requesterUID=UID;
+    this.imageString=imageString;
 
     this.state = "open";
   }

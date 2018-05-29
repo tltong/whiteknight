@@ -21,9 +21,9 @@ export class TaskServiceProvider {
   constructTask(title,description,difficulty,imageString):Task {
     let date = new Date().toISOString();
     let requesterID = this.ds.getCurrentUserEmail();
-
+    let UID = this.ds.getCurrentUserUID();
     // default task state is 'open'
-		return new Task(title,description,difficulty,date,requesterID,imageString);  
+		return new Task(title,description,difficulty,date,requesterID,UID,imageString);  
   }
 
 

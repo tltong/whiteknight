@@ -54,7 +54,6 @@ export class CreateTaskPage {
             this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
             this.photoString=<string>imageData;
           });
-          this.ps.presentToast('gallery selected');
         }
       });    
  

@@ -7,12 +7,14 @@ export class Member {
   public description:string;
   public docID:string;
   public storageID:string;
+  public uid:string;
 
-  constructor(name:string,gender:string,dob:string,email:string){
+  constructor(name:string,gender:string,dob:string,email:string,uid:string){
     this.name=name;
     this.gender=gender;
     this.dob=dob;
     this.email=email;
+    this.uid=uid;
   }
 
    getData(): object {

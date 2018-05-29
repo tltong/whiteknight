@@ -19,7 +19,9 @@ export class MemberServiceProvider {
   }
 
   constructMember(name:string,gender:string,dob:string,email:string):Member {
-    return new Member(name,gender,dob,email);
+    let uid = this.ds.getCurrentUserUID();
+
+    return new Member(name,gender,dob,email,uid);
   }
 
 /* //promise template 
