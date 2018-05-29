@@ -14,8 +14,6 @@ export class TaskServiceProvider {
   readonly collectionName:string ="tasks";
   readonly photoCollectionName:string = "photo";
   readonly photoLocation = "task_photos";
-  task:Task;
-
 
   constructor(private ds:DataServicesProvider, private ps:PhoneServiceProvider) {
   }
@@ -28,31 +26,10 @@ export class TaskServiceProvider {
 		return new Task(title,description,difficulty,date,requesterID,imageString);  
   }
 
-  
-  setTaskDocID(task:Task,id:string) {
-
-    var promise = new Promise((resolve, reject) => {
-	
-      task.docID=id;
-      this.ds.updateDocumentPromise(this.collectionName,<string>id,task).then( function(id) {
-
-      resolve();
-      })
-      .catch(function(error) {
-      reject(error);
-      });
-      });
-  	return promise;
-
-  }
 
   pushTask(task:Task) {
-
-    this.task=task;
     var promise = new Promise((resolve, reject) => {
     this.ds.pushDataFSPromise(this.collectionName,task).then ( id => {
-
-/*
       task.docID = <string>id;
       this.ds.updateDocumentPromise(this.collectionName,<string>id,task).then( function(id) {
         this.ps.presentToast('updated document');
@@ -61,12 +38,9 @@ export class TaskServiceProvider {
       .catch(function(error) {
       reject(error);
       });
-*/
       resolve(id);
     });
-
     });
-
     return promise;
   }
 
